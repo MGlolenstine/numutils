@@ -13,7 +13,7 @@
       in
       {
         defaultPackage = naersk-lib.buildPackage ./.;
-        devShell = with pkgs; mkShell {
+        devShell = with pkgs; mkShell rec {
           buildInputs = pkgs.lib.optionals pkgs.stdenv.isLinux (with pkgs; [
             # Rust deps
             cargo
@@ -21,6 +21,7 @@
             rustfmt
             pre-commit
             rustPackages.clippy
+            rust-analyzer
 
             # Audio
             alsa-lib
